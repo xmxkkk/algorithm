@@ -22,10 +22,6 @@ var merge=function(arr,left,mid,right,temp){
     }
 }
 var merge_sort=function(arr,left,right,temp){
-    if(arr.length==1){
-        temp[0]=arr[0];
-        return;
-    }
     if(left<right){
         var mid=parseInt((left+right)/2);
         merge_sort(arr,left,mid,temp);
@@ -35,7 +31,5 @@ var merge_sort=function(arr,left,right,temp){
 }
 
 module.exports=function(arr){
-    var temp=[];
-    merge_sort(arr,0,arr.length-1,temp);
-    arr=temp;
+    merge_sort(arr, 0, arr.length - 1, []);
 }
