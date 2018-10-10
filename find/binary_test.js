@@ -1,5 +1,5 @@
-var find=require('./binary_find.js');
-
+// var find=require('./binary_find.js');
+var find = require('./binary_find_my.js');
 var test_data=[
     [1,1,1,1,1],
     [1,2,3,4,5],
