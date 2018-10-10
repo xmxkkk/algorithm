@@ -27,6 +27,7 @@ var merge_sort=function(arr,left,right,temp){
         merge_sort(arr,left,mid,temp);
         merge_sort(arr,mid+1,right,temp);
         merge(arr,left,mid,right,temp);
+        
     }
 }
 

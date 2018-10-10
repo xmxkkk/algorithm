@@ -7,7 +7,7 @@ function quick_sort(arr,low,high){
     var key=arr[low];
 
     while(i<j){
-        while(i<j&&key<=arr[j]){
+        while(i<j&&key<arr[j]){
             j--;
         }
         arr[i]=arr[j];
