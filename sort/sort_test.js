@@ -2,7 +2,8 @@
 // var sort = require("./quick_sort.js");
 // var sort = require("./merge_sort_my.js");
 // var sort = require("./merge_sort.js");
-var sort=require('./insert_sort.js');
+// var sort=require('./insert_sort.js');
+var sort = require('./insert_sort_my.js');
 
 var test_data = [
     [9, 8, 7, 6, 5, 4, 3, 2, 1],
