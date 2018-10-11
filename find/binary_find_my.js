@@ -1,17 +1,17 @@
-var binary_find=function(arr,target){
-    var low=0;
-    var high=arr.length-1;
-    while(low<=high){
-        var mid=low+parseInt((high-low)/2);
+var binary_find=function(arr,left,right,target){
+    while(left<=right){
+        var mid=parseInt((left+right)/2);
         if(arr[mid]==target){
             return mid;
         }else if(arr[mid]>target){
-            high=mid-1;
-        }else if(arr[mid]<target){
-            low=mid+1;
+            return binary_find(arr,left,mid,target);
+        }else{
+            return binary_find(arr,mid+1,right,target);
         }
     }
     return -1;
 }
 
-module.exports=binary_find;
+module.exports=function(arr,target){
+    return binary_find(arr,0,arr.length-1,target);
+}
