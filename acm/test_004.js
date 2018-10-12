@@ -1,4 +1,4 @@
-
+/** https://projecteuler.net/problem=29 */
 
 function pow(a, n) {
     var t = 1;
@@ -46,24 +46,6 @@ function val(a,b){
     return val;
 }
 
-// function di(map){
-//     var di="";
-//     for(var k in map){
-//         di+=(k+",");
-//     }
-//     return di;
-// }
-
-// function mi(map,b){
-//     var mi="";
-//     for(var k in map){
-//         mi+=(map[k]*b+",");
-//     }
-//     return mi;
-// }
-
-
-/**/
 N=100;
 cnt=0;
 all=[];
