@@ -22,27 +22,61 @@ function divide(n,arr){
     return arr;
 }
 
-for(var n=2;n<=100;n++){
-    var arr=divide(n);
-
-    var map={};
-    for(var i=0;i<arr.length;i++){
-        if (map[arr[i]]==undefined){
-            map[arr[i]]=1;
-        }else{
-            map[arr[i]] = map[arr[i]]+1;
+function prime_map(arr){
+    var map = {};
+    for (var i = 0; i < arr.length; i++) {
+        if (map[arr[i]] == undefined) {
+            map[arr[i]] = 1;
+        } else {
+            map[arr[i]] = map[arr[i]] + 1;
         }
     }
+    return map;
+}
 
-    var a=1,b=1;
+function val(a,b){
+    var arr=divide(a);
+    var map=prime_map(arr);
+
+    var val="";
     for(var k in map){
-        a*=parseInt(k);
-        b*=map[k];
+        val+=(k+"^"+(map[k]*b)+"*");
     }
-    if(a==b){
-        console.log(n);
-        console.log(map);
+    val=val.substring(0,val.length-1);
+    return val;
+}
+
+// function di(map){
+//     var di="";
+//     for(var k in map){
+//         di+=(k+",");
+//     }
+//     return di;
+// }
+
+// function mi(map,b){
+//     var mi="";
+//     for(var k in map){
+//         mi+=(map[k]*b+",");
+//     }
+//     return mi;
+// }
+
+
+/**/
+N=100;
+cnt=0;
+all=[];
+
+for (var n = 2; n <= N; n++) {
+    for (var m = 2; m <= N; m++) {
+        var val1=val(n,m);
+        if (all.indexOf(val1)<0){
+            all.push(val1);
+            cnt++;
+        }
     }
 }
 
-
+console.log(cnt);
+console.log(all.length);
