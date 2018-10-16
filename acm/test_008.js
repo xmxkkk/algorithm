@@ -7,22 +7,16 @@ var p=require('./util.js').p;
 
 for(var i=10;i<=99;i++){
     for(var j=i+1;j<=99;j++){
-        if (i % 10 == parseInt(i/10) || parseInt(j/10) == j % 10) {
-            continue;
-        }
-
-        var t=gcd(j,i);
-        var ii=i/t;
-        var jj=j/t;
         
-        
+        var i0=parseInt(i/10);
+        var i1=i%10;
 
-        var a=parseInt(i/10);
-        var b=parseInt(j%10);
+        var j0=parseInt(j/10);
+        var j1=j%10;
 
-        if(a*jj==b*ii){
-            // p(i+"/"+j);
-            p(jj);
+        if(i1==j0&&i*j1==j*i0){
+            p(i+"/"+j)
+            p(i0+"/"+j1)
         }
 
 
