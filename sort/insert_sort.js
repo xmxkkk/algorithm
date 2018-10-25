@@ -1,16 +1,12 @@
-Array.prototype.swap=function(i,j){
-    var temp=this[i];
-    this[i]=this[j];
-    this[j]=temp;
-}
-var insert_sort=function(arr){
-    for(var i=1;i<arr.length;i++){
-        var j=i;
-        while(j>0&&arr[j]<arr[j-1]){
-            arr.swap(j,j-1);
-            --j;
+let sort=function(arr){
+    for(let i=1;i<arr.length;i++){
+        let key=arr[i];
+        let j=i-1;
+        while(i>=0&&arr[j]>key){
+            arr[j+1]=arr[j];
+            j--;
         }
+        arr[j+1]=key;
     }
 }
-
-module.exports=insert_sort;
+module.exports=sort
