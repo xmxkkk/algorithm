@@ -26,24 +26,21 @@ var Node=function(data){
                 return node.left;
             }
 
-            let tempNode=this.getLeafNode(node.left);
+            let tempNode=this.getLeafNode(node.right);
             node.data=tempNode.data;
-            node.left=this.deleteNode(node.left,node.data);
-            return node;
+            node.right=this.deleteNode(node.right,node.data);
         }else if(node.data>data){
             node.left=this.deleteNode(node.left,data);
-            return node;
         }else {
             node.right=this.deleteNode(node.right,data);
-            return node;
         }
-
+        return node;
     }
     this.getLeafNode=function (node) {
-        if(node.right==null){
+        if(node.left==null){
             return node;
         }else{
-            return this.getLeafNode(node.right);
+            return this.getLeafNode(node.left);
         }
     }
     this.findNode=function(node,data) {
@@ -134,18 +131,20 @@ var tree=function () {
     return root;
 }
 
-for(var i=2;i<=30;i+=2){
-    let root=tree();
-    root.delete(i);
-
-    var total=0;
-    root.total(root);
-
-    if(240-i!=total){
-        console.log(i)
-    }
-}
-// let t=tree();
-// t.print();
-// t.delete(4);
+// for(var i=2;i<=30;i+=2){
+//     let root=tree();
+//     root.delete(i);
+//
+//     var total=0;
+//     root.total(root);
+//
+//     if(240-i!=total){
+//         console.log(i)
+//     }
+// }
+let t=tree();
+t.print();
+t.delete(8);
+t.print()
+// t.insert(new Node(4));
 // t.print()
