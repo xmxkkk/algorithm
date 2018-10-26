@@ -1,4 +1,3 @@
-
 var merge=function(arr,left,mid,right,temp){
     var i=left;
     var j=mid+1;

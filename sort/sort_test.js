@@ -1,9 +1,9 @@
 // var sort=require("./quick_sort_my.js");
 // var sort = require("./quick_sort.js");
-// var sort = require("./merge_sort_my.js");
+var sort = require("./merge_sort_my.js");
 // var sort = require("./merge_sort.js");
 // var sort=require('./insert_sort.js');
-var sort = require('./insert_sort_my.js');
+// var sort = require('./insert_sort_my.js');
 // var sort = require('./select_sort.js');
 // var sort = require('./select_sort_my.js');
 // var sort=require('./shell_sort.js');
