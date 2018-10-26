@@ -1,17 +1,54 @@
-var Node=function(data){
-    this.data=data;
-    this.left=null;
-    this.right=null;
-    this.insert=function(target) {
-        this.insertNode(this,target);
+'use strict'
+
+var total=0;
+
+class Node{
+    constructor(data){
+        this.data=data;
+        this.left=null;
+        this.right=null;
     }
-    this.find=function (data) {
-        return this.findNode(this,data);
+    find(data){
+        return this._findNode(this,data);
     }
-    this.delete=function(data){
-        this.deleteNode(this,data);
+    _findNode(node,data){
+        if(node==null){
+            return null;
+        }
+        if(node.data>data){
+            return this._findNode(node.left,data);
+        }else if(node.data<data){
+            return this._findNode(node.right,data);
+        }else{
+            return node;
+        }
     }
-    this.deleteNode=function (node,data) {
+
+    insert(target){
+        this._insertNode(this,target);
+    }
+    _insertNode(node,target){
+        if(node==null){
+            return;
+        }
+        if(node.data>target.data){
+            if(node.left==null){
+                node.left=target;
+            }else{
+                this._insertNode(node.left,target);
+            }
+        }else if(node.data<target.data){
+            if(node.right==null){
+                node.right=target;
+            }else{
+                this._insertNode(node.right,target);
+            }
+        }
+    }
+    delete(data){
+        this._deleteNode(this,data);
+    }
+    _deleteNode(node,data){
         if(node==null){
             return null;
         }
@@ -25,90 +62,55 @@ var Node=function(data){
             if(node.right==null){
                 return node.left;
             }
-
-            let tempNode=this.getLeafNode(node.right);
+            let tempNode=this._getLeafNode(node.left);
             node.data=tempNode.data;
-            node.right=this.deleteNode(node.right,node.data);
+            console.log(node.data)
+            console.log(data);
+            node.left=this._deleteNode(node.left,node.data);
         }else if(node.data>data){
-            node.left=this.deleteNode(node.left,data);
-        }else {
-            node.right=this.deleteNode(node.right,data);
+            node.left=this._deleteNode(node.left,data);
+        }else if(node.data<data){
+            node.right=this._deleteNode(node.right,data);
         }
         return node;
     }
-    this.getLeafNode=function (node) {
-        if(node.left==null){
+    _getLeafNode(node){
+        if(node.right==null){
             return node;
         }else{
-            return this.getLeafNode(node.left);
+            return this._getLeafNode(node.right);
         }
     }
-    this.findNode=function(node,data) {
-        if(node==null){
-            return null;
-        }
-        if(node.data==data){
-            return node;
-        }else{
-            if(node.data>data){
-                return this.findNode(node.left,data);
-            }else{
-                return this.findNode(node.right,data);
-            }
-        }
-    }
-    this.insertNode=function(node,target){
-        if(node==null){
-            return;
-        }
-        if(node.data<target.data){
-            if(node.right==null){
-                node.right=target;
-            }else{
-                this.insertNode(node.right,target);
-            }
-        }else{
-            if(node.left==null){
-                node.left=target;
-            }else{
-                this.insertNode(node.left,target);
-            }
-        }
-    }
-    this.print=function() {
+    print(){
         this.printNode(this,0,0);
     }
-    this.printNode=function(node,depth,pos){
+    printNode(node,depth,pos){
         if(node==null){
             return;
         }
         let s="";
         for(let i=0;i<depth;i++){
-            s=s+"---:";
+            s+="---:";
         }
         if(pos==-1){
-            s=s+"L";
+            s+="L";
         }else if(pos==1){
-            s=s+"R";
+            s+="R";
         }
+
         console.log(s+node.data);
-        depth+=1;
-        this.printNode(node.left,depth,-1);
+        this.printNode(node.left,++depth,-1);
         this.printNode(node.right,depth,1);
     }
-    this.total=function(node){
-        if(node!=null){
-            total+=node.data;
+    total(node){
+        if(node==null){
+            return;
         }
-        if(node.left!=null){
-            this.total(node.left);
-        }
-        if(node.right!=null){
-            this.total(node.right);
-        }
+        total+=node.data;
+        this.total(node.left);
+        this.total(node.right);
     }
 }
-
 
 var tree=function () {
     let root=new Node(16)
@@ -131,6 +133,9 @@ var tree=function () {
     return root;
 }
 
+// let t=tree();
+// t.print();
+//
 // for(var i=2;i<=30;i+=2){
 //     let root=tree();
 //     root.delete(i);
@@ -144,7 +149,7 @@ var tree=function () {
 // }
 let t=tree();
 t.print();
-t.delete(8);
+t.delete(4);
 t.print()
 // t.insert(new Node(4));
 // t.print()
