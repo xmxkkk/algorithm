@@ -8,6 +8,11 @@ class Node{
         this.left=null;
         this.right=null;
     }
+    constructor(data,left,right){
+        this.data=data;
+        this.left=left;
+        this.right=right;
+    }
     find(data){
         return this._findNode(this,data);
     }
