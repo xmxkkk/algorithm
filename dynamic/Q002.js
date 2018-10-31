@@ -6,20 +6,38 @@
  * 问总过有多少种可能的组合方式？
  */
 
-var cut=function(v,n){
-    let d={};
-    for(var i=0;i<n+1;i++){
-        d[i]=0;
-    }
-    d[0]=1;
+var t=0;
 
+var cut=function (v,n,memo) {
+    let max=v[v.length-1];
+    if(n>max){
+        let m=0;
+        while(n>max){
+            m+=cut(v,n-max);
+            n-=max;
+        }
+        return m+cut(v,n,memo);
+    }
+
+    if(memo[n]!=undefined){
+        return memo[n];
+    }
+
+    if(n==0){
+        t+=1;
+        return;
+    }
     for(var i=0;i<v.length;i++){
-        for(var j=v[i];j<n+1;j++){
-            d[j]+=d[j-v[i]];
+        if(v[i]<=n){
+            var xx=cut(v,n-v[i],memo);
+            memo[n-v[i]]=xx;
         }
     }
-    console.log(d[n]);
 }
+// 1,1,1,1
+// 1,1,2
+// 2,2
+cut([1,2,5,10,20,50,100,200],200,{});
+// cut([1,2,5],5,{});
 
-// cut([1,2,5,10,20,50,100,200],200);
-cut([1,2],7);
+console.log(t);
