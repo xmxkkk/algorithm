@@ -107,7 +107,7 @@ class Graph {
         callback&&callback(v);
         let w=this.getChildVertex(v);
         for(var i=0;i<w.length;i++){
-            if(!(true==visited[w[i].id()])){
+            if(!(true==visited[w[i].id()])){+
                 this.dfs(w[i],visited,callback);
             }
         }
