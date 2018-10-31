@@ -1,4 +1,5 @@
 'use strict'
+
 const Queue=require('../array/queue.js')
 
 let func=function() {
@@ -13,7 +14,6 @@ let func=function() {
     };
 };
 func();
-
 
 
 class Vertex{
