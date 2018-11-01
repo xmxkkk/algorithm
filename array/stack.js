@@ -1,55 +1,46 @@
 'use strict'
 
-class Queue{
+class Stack {
     constructor(){
         this.list=[];
     }
-
     empty(){
         return this.list.length==0;
     }
-
-    back(){
+    peek(){
         if(this.empty()){
             return null;
         }
         return this.list[this.list.length-1];
     }
-    front(){
+    pop(){
         if(this.empty()){
             return null;
         }
-        return this.list[0];
-    }
-
-    push(data){
-        this.list.push(data);
-    }
-
-    pop(){
-        if(this.list.length==0){
-            return null;
-        }
-
-        let item=this.list[0];
-        this.list.splice(0,1);
+        let item=this.list[this.list.length-1];
+        this.list.splice(this.list.length-1,this.list.length);
         return item;
     }
-
+    push(item){
+        this.list.push(item);
+        return item;
+    }
     size(){
         return this.list.length;
     }
-
     print(){
         console.log(this.list);
     }
 }
 
-module.exports=Queue;
+module.exports=Stack;
 
-// let q=new Queue();
-// q.push("1");
-// q.push("2");
-// q.push("3");
+// let s=new Stack();
+// s.push('1');
+// s.push('2');
+// s.push('3');
 //
-// console.log(q.pop());console.log(q.pop());console.log(q.pop());
+// console.log(s.pop());
+// console.log(s.pop());
+// console.log(s.pop());
+// console.log(s.pop());

@@ -37,7 +37,7 @@ class Graph {
     getChildVertex(v){
         let result=[];
         let i=this.vertexs.indexOf(v);
-        for(var j=0;j<this.vertexs.length;j++){
+        for(let j=0;j<this.vertexs.length;j++){
             if(this.edges[i][j]!=0){
                 result.push(this.vertexs[j]);
             }
@@ -81,15 +81,15 @@ class Graph {
         let visited={};
         visited[v.id()]=true;
         let q=new Queue();
-        q.enQueue(v);
+        q.push(v);
         callback&&callback(v);
-        while(!q.isEmpty()){
-            v=q.deQueue();
+        while(!q.empty()){
+            v=q.pop();
             let w=this.getChildVertex(v);
             for(let i=0;i<w.length;i++){
-                if(!(true==visited[w[i].id()])){
+                if(!visited[w[i].id()]){
                     visited[w[i].id()]=true;
-                    q.enQueue((w[i]));
+                    q.push((w[i]));
                     callback&&callback(w[i]);
                 }
             }
