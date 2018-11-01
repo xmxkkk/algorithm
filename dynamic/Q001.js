@@ -8,36 +8,32 @@
  * https://blog.csdn.net/u013309870/article/details/75193592
  */
 
-
-var cut=function(c,p,n,memo) {
-    let max=c[c.length-1];
-    if(n>max){
-        let t=0;
-        while(n>max){
-            t+=cut(c,p,max,memo);
-            n-=max;
-        }
-        return t+cut(c,p,n,memo);
+/**
+ *
+ * @param cost 花费列表
+ * @param value 价格列表
+ * @param n 总数
+ * @returns {*}
+ */
+let cut=function(cost,value,n) {
+    if(n==0){
+        return 0;
     }
 
-    if(memo[n]!=undefined){
-        return memo[n];
-    }
-
-    let q=-1;
-    for(var i=0;i<c.length;i++){
-        if(n-c[i]>=0){
-            q=Math.max(q,p[i]+cut(c,p,n-c[i],memo))
+    let q=-1000000000;
+    for(let i=0;i<cost.length;i++){
+        if(n-cost[i]>=0){
+            q=Math.max(q,value[i]+cut(cost,value,n-cost[i]))
         }
     }
-    memo[n]=q;
     return q;
 }
+console.log(cut([1,2,3,4,5,6,7,8,9,10],[1,5,8,9,10,17,17,20,24,30],4));
+console.log(cut([1,2,3,4,5,6,7,8,9,10],[1,5,8,9,10,17,17,20,24,30],10));
+console.log(cut([1,2,3,4,5,6,7,8,9,10],[1,5,8,9,10,17,17,20,24,30],20));
 
-// console.log(cut([1,2,3,4,5,6,7,8,9,10],[1,5,8,9,10,17,17,20,24,30],4,{}));
-// console.log(cut([1,2,3,4,5,6,7,8,9,10],[1,5,8,9,10,17,17,20,24,30],10,{}));
-// console.log(cut([1,2,3,4,5,6,7,8,9,10],[1,5,8,9,10,17,17,20,24,30],20,{}));
+console.log(cut([1,3,5],[1,1,1],11));
 
-console.log(cut([1,2,3,4,5,6,7,8,9],[1,5,8,9,10,17,17,20,24],4,{}));
-console.log(cut([1,2,3,4,5,6,7,8,9],[1,5,8,9,10,17,17,20,24],10,{}));
-console.log(cut([1,2,3,4,5,6,7,8,9],[1,5,8,9,10,17,17,20,24],20,{}));
+// console.log(cut([1,2,3,4,5,6,7,8,9],[1,5,8,9,10,17,17,20,24],4,{}));
+// console.log(cut([1,2,3,4,5,6,7,8,9],[1,5,8,9,10,17,17,20,24],10,{}));
+// console.log(cut([1,2,3,4,5,6,7,8,9],[1,5,8,9,10,17,17,20,24],20,{}));

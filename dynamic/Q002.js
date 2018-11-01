@@ -6,49 +6,45 @@
  * 问总过有多少种可能的组合方式？
  */
 
-var t=0;
-
-var cut=function (v,n,memo) {
-    let max=v[v.length-1];
-    if(n>max){
-        let m=0;
-        while(n>max){
-            m+=cut(v,n-max,memo);
-            n-=max;
-        }
-        return m+cut(v,n,memo);
+/**
+ *
+ * @param coins 硬币列表
+ * @param n 总数
+ * @returns {*}
+ */
+let count=(coins,n)=>{
+    let meno={};
+    for(let i=0;i<n+1;i++){
+        meno[i]=0;
     }
+    meno[0]=1;
 
-    if(memo[n]!=undefined){
-        return memo[n];
-    }
-
-    if(n==0){
-        t+=1;
-        return;
-    }
-    for(var i=0;i<v.length;i++){
-        if(v[i]<=n){
-            var xx=cut(v,n-v[i],memo);
-            memo[n-v[i]]=xx;
+    for(let i=0;i<coins.length;i++){
+        for(let j=coins[i];j<=n;j++){
+            meno[j]=meno[j]+meno[j-coins[i]];
         }
     }
+    return meno[n];
 }
-// 1,1,1,1
-// 1,1,2
-// 2,2
-// cut([1,2,5,10,20,50,100,200],200,{});
 
-//1 1 1 1 1 1
-//2 1 1 1 1
-//2 2 1 1
-//2 2 2
-// cut([1,2],6,{});
+// 73682
+// console.log(count([1,2,5,10,20,50,100,200],5));
+console.log(count([1,2,5],10));
 
-//1 1 1 1 1
-//2 1 1 1
-//2 2 1
-cut([1,2],5,{});
+// 5
+// 11111
+// 1112
+// 122
 
+// 10=1,2,5
+// 1 1 1 1 1 1 1 1 1 1
+// 1 1 1 1 1 1 1 1 2
+// 1 1 1 1 1 1 2 2
+// 1 1 1 1 2 2 2
+// 1 1 2 2 2 2
 
-console.log(t);
+// 2 2 2 2 2
+// 5 1 1 1 1 1
+// 5 1 1 1 2
+// 5 1 2 2
+// 5 5
