@@ -13,7 +13,7 @@ var cut=function (v,n,memo) {
     if(n>max){
         let m=0;
         while(n>max){
-            m+=cut(v,n-max);
+            m+=cut(v,n-max,memo);
             n-=max;
         }
         return m+cut(v,n,memo);
@@ -37,7 +37,18 @@ var cut=function (v,n,memo) {
 // 1,1,1,1
 // 1,1,2
 // 2,2
-cut([1,2,5,10,20,50,100,200],200,{});
-// cut([1,2,5],5,{});
+// cut([1,2,5,10,20,50,100,200],200,{});
+
+//1 1 1 1 1 1
+//2 1 1 1 1
+//2 2 1 1
+//2 2 2
+// cut([1,2],6,{});
+
+//1 1 1 1 1
+//2 1 1 1
+//2 2 1
+cut([1,2],5,{});
+
 
 console.log(t);
